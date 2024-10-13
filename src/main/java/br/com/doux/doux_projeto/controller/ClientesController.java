@@ -34,10 +34,15 @@ public class ClientesController {
     List<Clientes> list() {
         return this.clientesService.list();
     }
-    
-    @PutMapping("/")
-    List<Clientes> update(@RequestBody Clientes clientes) {
-        return this.clientesService.update(clientes);
+
+    @GetMapping("/{id}")
+    public Clientes getClienteById(@PathVariable("id") Long id) {
+        return clientesService.findById(id);
+    }
+
+    @PutMapping("{id}")
+    public Clientes update(@PathVariable("id") Long id, @RequestBody Clientes clientes) {
+        return this.clientesService.update(id, clientes);
     }
     
     @DeleteMapping("{id}")

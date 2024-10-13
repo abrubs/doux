@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import br.com.doux.doux_projeto.entity.Funcionarios;
 import br.com.doux.doux_projeto.service.FuncionariosService;
 
-@RestController
+
 @RequestMapping("/funcionarios")
+@RestController
 public class FuncionariosController {
 
     @Autowired 

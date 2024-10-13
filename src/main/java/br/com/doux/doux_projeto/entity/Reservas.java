@@ -10,67 +10,70 @@ import jakarta.persistence.Table;
 public class Reservas {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long IdReserva;
-    private long IdCliente;
-    private long IdProduto;
-    private long Quantidade;
-    private String DataReserva;
-    private String StatusReserva;
-    private int PrioridadeReserva;
+    private long idReserva;
+    private long idCliente;
+    private long idProduto;
+    private long quantidade;
+    private String dataReserva;
+    private String statusReserva;
+    private int prioridadeReserva;
 
     public long getIdReserva() {
-        return IdReserva;
+        return idReserva;
     }
 
-    public void setIdReserva(long IdReserva) {
-        this.IdReserva = IdReserva;
+    public void setIdReserva(long idReserva) {
+        this.idReserva = idReserva;
     }
 
     public long getIdCliente() {
-        return IdCliente;
+        return idCliente;
     }
 
-    public void setIdCliente(long IdCliente) {
-        this.IdCliente = IdCliente;
+    public void setIdCliente(long idCliente) {
+        this.idCliente = idCliente;
     }
 
     public long getIdProduto() {
-        return IdProduto;
+        return idProduto;
     }
 
-    public void setIdProduto(long IdProduto) {
-        this.IdProduto = IdProduto;
+    public void setIdProduto(long idProduto) {
+        this.idProduto = idProduto;
     }
 
     public long getQuantidade() {
-        return Quantidade;
+        return quantidade;
     }
 
-    public void setQuantidade(long Quantidade) {
-        this.Quantidade = Quantidade;
+    public void setQuantidade(long quantidade) {
+        this.quantidade = quantidade;
     }
 
     public String getDataReserva() {
-        return DataReserva;
+        return dataReserva;
     }
 
-    public void setDataReserva(String DataReserva) {
-        this.DataReserva = DataReserva;
+    public void setDataReserva(String dataReserva) {
+        this.dataReserva = dataReserva;
     }
 
     public String getStatusReserva() {
-        return StatusReserva;
+        return statusReserva;
     }
 
-    public void setStatusReserva(String StatusReserva) {
-        this.StatusReserva = StatusReserva;
+    public void setStatusReserva(String statusReserva) {
+        this.statusReserva = statusReserva;
     }
 
     public int getPrioridadeReserva() {
-        return PrioridadeReserva;
+        return prioridadeReserva;
     }
 
-    public void setPrioridadeReserva(int PrioridadeReserva) {
-        this.PrioridadeReserva = PrioridadeReserva;
+    public void setPrioridadeReserva(int prioridadeReserva) {
+        this.prioridadeReserva = prioridadeReserva;
     }
+
+    
+
 }

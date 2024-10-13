@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.doux.doux_projeto.entity.Fornecedor;
+import br.com.doux.doux_projeto.exception.ResourceNotFoundException;
 import br.com.doux.doux_projeto.repository.FornecedorRepository;
 
 @Service
@@ -22,15 +23,30 @@ public class FornecedorService {
 
     public List<Fornecedor> list(){
         Sort sort = Sort.by("PrioridadeFornecedor").descending().and(
-        Sort.by("Nomefornecedor").ascending());
+        Sort.by("nomeFornecedor").ascending());
         return fornecedorRepository.findAll(sort);
     }
 
-    public List<Fornecedor> update(Fornecedor fornecedor){
-        fornecedorRepository.save(fornecedor);
-        return list();
+   public Fornecedor findById(Long id){
+     return fornecedorRepository.findById(id);
+     .orElseThrow(()-> new ResourceNotFoundException("Fornecedor não encontrado com id"+ id));
     }
-
+ 
+    public Fornecedor update(Long Id, Fornecedor fornecedor){
+       Fornecedor existigFornecedor = fornecedorRepository.findById(Id);
+       .orElseThrow(()-> new ResourceNotFoundException("Fornecedor não encontrado com id"+ id));
+    
+       existigFornecedor.setnomeFornecedor(fornecedor.getnomeFornecedor());
+       existigFornecedor.setEmailFornecedor(fornecedor.getEmailFornecedor());
+       existigFornecedor.setTelefoneFornecedor(fornecedor.getTelefoneFornecedor());
+       existigFornecedor.setEnderecoFornecedor(fornecedor.getEnderecoFornecedor());
+       existigFornecedor.setCnpj(fornecedor.getCnpj());
+       existigFornecedor.setDataCadastro(fornecedor.getDataCadastro());
+       existigFornecedor.setPrioridadeFornecedor(fornecedor.getPrioridadeFornecedor());
+    
+       fornecedorRepository.save(existigFornecedor);
+    }
+    
     public List<Fornecedor> delete(Long id){
         fornecedorRepository.deleteById(id);
         return list();

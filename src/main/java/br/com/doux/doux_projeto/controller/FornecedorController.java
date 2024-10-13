@@ -15,31 +15,32 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.doux.doux_projeto.entity.Fornecedor;
 import br.com.doux.doux_projeto.service.FornecedorService;
 
-@RestController
+
 @RequestMapping("/fornecedor")
+@RestController
 public class FornecedorController {
 
    @Autowired
     private FornecedorService fornecedorService;
 
    
-    @PostMapping
+    @PostMapping("/")
     List<Fornecedor> create(@RequestBody Fornecedor fornecedor){
-       return fornecedorService.create(fornecedor);
+       return this.fornecedorService.create(fornecedor);
     }
 
-    @GetMapping
+    @GetMapping("/")
     List<Fornecedor> list(){
-       return fornecedorService.list();
+       return this.fornecedorService.list();
     }
 
-    @PutMapping
-    List<Fornecedor> update(@RequestBody Fornecedor fornecedor){
-       return fornecedorService.update(fornecedor);
+    @PutMapping("/{id}")
+   public Fornecedor getFornecedorById(@PathVariable("id") Long id){
+      return fornecedorService.findById(id);
     }
     
     @DeleteMapping("{id}")
     List<Fornecedor> delete(@PathVariable("id") Long id){
-       return fornecedorService.delete(id);
+       return this.fornecedorService.delete(id);
     }
 }

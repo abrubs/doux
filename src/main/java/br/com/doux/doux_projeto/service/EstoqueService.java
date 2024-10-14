@@ -1,7 +1,6 @@
 package br.com.doux.doux_projeto.service;
 
 import java.util.List;
-
 import br.com.doux.doux_projeto.entity.Clientes;
 import br.com.doux.doux_projeto.entity.Produtos;
 import br.com.doux.doux_projeto.exception.ResourceNotFoundException;
@@ -9,14 +8,16 @@ import br.com.doux.doux_projeto.repository.ProdutosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import br.com.doux.doux_projeto.entity.Estoque;
+import br.com.doux.doux_projeto.exception.ResourceNotFoundException;
 import br.com.doux.doux_projeto.repository.EstoqueRepository;
 import java.util.Optional;
+import jakarta.annotation.Resource;
 
 
 @Service
 public class EstoqueService {
+
     @Autowired
     private EstoqueRepository estoqueRepository;
 
@@ -58,14 +59,24 @@ public class EstoqueService {
         return null; // Retornar null ou lançar uma exceção se o estoque não for encontrado
     }
 
-
     public List<Estoque> update(Estoque estoque) {
         estoqueRepository.save(estoque);
         return list();
     }
 
-    public List<Estoque> delete(Long id) {
-        estoqueRepository.deleteById(id);
-        return list();
+   pubic Estoque update(Long id, Estoque estoque) {
+    Estoque existingEstoque = estoqueRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Estoque não encontrado com id" + id));
+
+    existingEstoque.setQuantidadeDisponivel(estoque.getQuantidadeDisponivel());
+    existingEstoque.setDataUltimaAtualizacao(estoque.getDataUltimaAtualizacao());
+    existingEstoque.setPrioridadeEstoque(estoque.getPrioridadeEstoque());
+
+    return estoqueRepository.save(existingEstoque);
+   }
+
+   public List<Estoque> delete(Long id){
+    estoqueRepository.deleteById(id);
+    return list();
     }
 }

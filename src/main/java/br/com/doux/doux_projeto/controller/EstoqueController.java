@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +15,9 @@ import org.springframework.http.ResponseEntity;
 import br.com.doux.doux_projeto.entity.Estoque;
 import br.com.doux.doux_projeto.service.EstoqueService;
 
-@RestController
+
 @RequestMapping("/estoque")
+@RestController
 public class EstoqueController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class EstoqueController {
 
    
 
-    @PostMapping
+    @PostMapping("/")
     List<Estoque> create(@RequestBody Estoque estoque){
       return estoqueService.create(estoque);
     }
@@ -53,8 +53,20 @@ public class EstoqueController {
       return estoqueService.update(estoque);
     }
 
+   @GetMapping("/")
+   List<Estoque> list(){
+    return this.estoqueService.list();
+   }
+
+  @GetMapping("/{id}")
+  public Estoque getEstoqueById(@PathVariable("id") Long id){
+     return estoqueService.findById(id);
+   }
+    
+    
+   
     @DeleteMapping("{id}")
     List<Estoque> delete(@PathVariable("id") Long id){
-      return estoqueService.delete(id); 
+      return this.estoqueService.delete(id); 
     }
 }

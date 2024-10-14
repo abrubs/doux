@@ -10,69 +10,72 @@ import jakarta.persistence.Table;
 public class Funcionarios {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long CodigoFuncionario;
-    private String NomeFuncionario;
-    private String EmailFuncionario;
-    private long TelefoneFuncionario;
-    private String FuncaoFuncionario;
-    private String SenhaFuncionario;
-    private int PrioridadeFuncionario;
+    private long codigoFuncionario;
+    private String nomeFuncionario;
+    private String emailFuncionario;
+    private long telefoneFuncionario;
+    private String funcaoFuncionario;
+    private String senhaFuncionario;
+    private int prioridadeFuncionario;
 
     public long getCodigoFuncionario() {
-        return CodigoFuncionario;
+        return codigoFuncionario;
     }
 
-    public void setCodigoFuncionario(long CodigoFuncionario) {
-        this.CodigoFuncionario = CodigoFuncionario;
+    public void setCodigoFuncionario(long codigoFuncionario) {
+        this.codigoFuncionario = codigoFuncionario;
     }
 
     public String getNomeFuncionario() {
-        return NomeFuncionario;
+        return nomeFuncionario;
     }
 
-    public void setNomeFuncionario(String NomeFuncionario) {
-        this.NomeFuncionario = NomeFuncionario;
+    public void setNomeFuncionario(String nomeFuncionario) {
+        this.nomeFuncionario = nomeFuncionario;
     }
 
     public String getEmailFuncionario() {
-        return EmailFuncionario;
+        return emailFuncionario;
     }
 
-    public void setEmailFuncionario(String EmailFuncionario) {
-        this.EmailFuncionario = EmailFuncionario;
+    public void setEmailFuncionario(String emailFuncionario) {
+        this.emailFuncionario = emailFuncionario;
     }
 
     public long getTelefoneFuncionario() {
-        return TelefoneFuncionario;
+        return telefoneFuncionario;
     }
 
-    public void setTelefoneFuncionario(long TelefoneFuncionario) {
-        this.TelefoneFuncionario = TelefoneFuncionario;
+    public void setTelefoneFuncionario(long telefoneFuncionario) {
+        this.telefoneFuncionario = telefoneFuncionario;
     }
 
     public String getFuncaoFuncionario() {
-        return FuncaoFuncionario;
+        return funcaoFuncionario;
     }
 
-    public void setFunçaoFuncionario(String FuncaoFuncionario) {
-        this.FuncaoFuncionario = FuncaoFuncionario;
+    public void setFuncaoFuncionario(String funcaoFuncionario) {
+        this.funcaoFuncionario = funcaoFuncionario;
     }
 
     public String getSenhaFuncionario() {
-        return SenhaFuncionario;
+        return senhaFuncionario;
     }
 
-    public void setSenhaFuncionario(String SenhaFuncionario) {
-        this.SenhaFuncionario = SenhaFuncionario;
+    public void setSenhaFuncionario(String senhaFuncionario) {
+        this.senhaFuncionario = senhaFuncionario;
     }
 
     public int getPrioridadeFuncionario() {
-        return PrioridadeFuncionario;
+        return prioridadeFuncionario;
     }
 
-    public void setPrioridadeFuncionario(int PrioridadeFuncionario) {
-        this.PrioridadeFuncionario = PrioridadeFuncionario;
+    public void setPrioridadeFuncionario(int prioridadeFuncionario) {
+        this.prioridadeFuncionario = prioridadeFuncionario;
     }
+
+     
+
 }
 
 

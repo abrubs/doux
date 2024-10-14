@@ -1,21 +1,30 @@
 package br.com.doux.doux_projeto.entity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
- import jakarta.persistence.GenerationType;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
- @Entity
- @Table(name ="estoque")
+@Entity
+@Table(name ="estoque")
 public class Estoque {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long idEstoque;
+
+    // Campo simples para idProduto, sem relacionamento com Produto
     private long idProduto;
+
+    @Transient
+    private Produtos produto;
+
     private long quantidadeDisponivel;
     private String dataUltimaAtualizacao;
     private int prioridadeEstoque;
 
+    // Getters e Setters
     public long getIdEstoque() {
         return idEstoque;
     }
@@ -56,7 +65,12 @@ public class Estoque {
         this.prioridadeEstoque = prioridadeEstoque;
     }
 
-    
+    // Getter e Setter do Produto
+    public Produtos getProduto() {
+        return produto;
+    }
 
+    public void setProduto(Produtos produto) {
+        this.produto = produto;
+    }
 }
- 

@@ -23,12 +23,11 @@ public class FuncionariosService {
     }
 
     public List<Funcionarios> list(){
-        Sort sort = Sort.by("PrioridadeFuncionario").descending().and(
-        Sort.by("NomeFuncionario").ascending());
+        Sort sort = Sort.by("prioridadeFuncionario").descending().and(
+        Sort.by("nomeFuncionario").ascending());
        return funcionariosRepository.findAll(sort);
     }
 
-    
     public Funcionarios findById(Long id){
         return funcionariosRepository.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("Funcionario não encontrado com id"+ id));
@@ -49,8 +48,6 @@ public class FuncionariosService {
     return funcionariosRepository.save(existingFuncionarios);
 
     }
-
-
 
     public List<Funcionarios> delete(Long id){
         funcionariosRepository.deleteById(id);

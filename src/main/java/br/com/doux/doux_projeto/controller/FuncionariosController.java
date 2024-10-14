@@ -22,20 +22,26 @@ public class FuncionariosController {
     @Autowired 
     private FuncionariosService funcionariosService;
 
-    @PostMapping
+    @PostMapping("/")
     List<Funcionarios> create(@RequestBody Funcionarios funcionarios){
-      return funcionariosService.create(funcionarios);
+      return this.funcionariosService.create(funcionarios);
     }
 
-    @GetMapping
+    @GetMapping("/")
     List<Funcionarios> list(){
-      return funcionariosService.list();
+      return this.funcionariosService.list();
     }
 
-    @PutMapping
-    List<Funcionarios> update(@RequestBody Funcionarios funcionarios){
-      return funcionariosService.update(funcionarios);
+    @GetMapping("/{id}")
+    public Funcionarios getFuncionariosById(@PathVariable("id") Long id){
+      return funcionariosService.findById(id);
     }
+
+    @PutMapping("{id}")
+   public Funcionarios update(@PathVariable("id") Long id, @RequestBody Funcionarios funcionarios){
+    return this.funcionariosService.update(id, funcionarios);
+   }
+    
     
     @DeleteMapping("{id}")
     List<Funcionarios> delete(@PathVariable("id") Long id){

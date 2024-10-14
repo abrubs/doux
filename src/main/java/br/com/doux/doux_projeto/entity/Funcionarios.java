@@ -54,7 +54,7 @@ public class Funcionarios {
         return FuncaoFuncionario;
     }
 
-    public void setFunçaoFuncionario(String FuncaoFuncionario) {
+    public void setFuncaoFuncionario(String FuncaoFuncionario) {
         this.FuncaoFuncionario = FuncaoFuncionario;
     }
 
@@ -73,6 +73,9 @@ public class Funcionarios {
     public void setPrioridadeFuncionario(int PrioridadeFuncionario) {
         this.PrioridadeFuncionario = PrioridadeFuncionario;
     }
+
+
+    
 }
 
 

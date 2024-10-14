@@ -15,31 +15,37 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.doux.doux_projeto.entity.Produtos;
 import br.com.doux.doux_projeto.service.ProdutosService;
 
-@RestController
+
 @RequestMapping("/produtos")
+@RestController
 public class ProdutosController {
 
     @Autowired
     private ProdutosService produtosService;
 
-     
-    @PostMapping
-    List<Produtos> create(@RequestBody Produtos produtos){
-      return produtosService.create(produtos);
-    }
+     @PostMapping("/")
+     List<Produtos> create(@RequestBody Produtos produtos){
+        return this.produtosService.create(produtos);
+     }
 
-    @GetMapping
-    List<Produtos> list(){
-      return produtosService.list();
-    }
+     @GetMapping("/")
+     List <Produtos> list(){
+        return this.produtosService.list();
+     }
 
-    @PutMapping
-    List<Produtos> update(@RequestBody Produtos produtos){
-      return produtosService.update(produtos);
-    }
+     @GetMapping("/{id}")
+     public Produtos geProdutosById(@PathVariable("id") Long id){
+        return produtosService.findById(id);
+     }
+
+     @PutMapping("{id}")
+     public Produtos update(@PathVariable("id") Long id, @RequestBody Produtos produtos){
+        return this.produtosService.update(id, produtos);
+     }
 
     @DeleteMapping("{id}")
     List<Produtos> delete(@PathVariable("id") Long id){
-      return produtosService.delete(id);
+        return this.produtosService.delete(id);
     }
+
 }

@@ -23,23 +23,28 @@ public class FornecedorController {
     private FornecedorService fornecedorService;
 
    
-    @PostMapping
+    @PostMapping("/")
     List<Fornecedor> create(@RequestBody Fornecedor fornecedor){
-       return fornecedorService.create(fornecedor);
+       return this.fornecedorService.create(fornecedor);
     }
 
-    @GetMapping
+    @GetMapping("/")
     List<Fornecedor> list(){
-       return fornecedorService.list();
+       return this.fornecedorService.list();
     }
 
-    @PutMapping
-    List<Fornecedor> update(@RequestBody Fornecedor fornecedor){
-       return fornecedorService.update(fornecedor);
+   @GetMapping("/{id}")
+    public Fornecedor getFornecedorById(@PathVariable("id") Long id){
+      return fornecedorService.findById(id);
+    }
+
+    @PutMapping("{id}")
+    public Fornecedor update(@PathVariable("id") Long id, @RequestBody Fornecedor fornecedor){
+       return this.fornecedorService.update(id, fornecedor);
     }
     
     @DeleteMapping("{id}")
     List<Fornecedor> delete(@PathVariable("id") Long id){
-       return fornecedorService.delete(id);
+       return this.fornecedorService.delete(id);
     }
 }

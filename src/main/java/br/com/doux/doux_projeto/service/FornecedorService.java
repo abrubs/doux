@@ -23,7 +23,7 @@ public class FornecedorService {
 
     public List<Fornecedor> list(){
         Sort sort = Sort.by("PrioridadeFornecedor").descending().and(
-        Sort.by("Nomefornecedor").ascending());
+        Sort.by("nomeFornecedor").ascending());
         return fornecedorRepository.findAll(sort);
     }
 

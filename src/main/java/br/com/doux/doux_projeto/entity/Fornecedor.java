@@ -10,76 +10,79 @@ import jakarta.persistence.Table;
 public class Fornecedor {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long IdFornecedor;
-    private String NomeFornecedor;
-    private String EmailFornecedor;
-    private Long TelefoneFornecedor;
-    private String EnderecoFornecedor;
-    private Long Cnpj;
-    private String DataCadastro;
-    private int PrioridadeFornecedor;
+    private Long idFornecedor;
+    private String nomeFornecedor;
+    private String emailFornecedor;
+    private Long telefoneFornecedor;
+    private String enderecoFornecedor;
+    private Long cnpj;
+    private String dataCadastro;
+    private int prioridadeFornecedor;
 
     public Long getIdFornecedor() {
-        return IdFornecedor;
+        return idFornecedor;
     }
 
-    public void setIdFornecedor(Long IdFornecedor) {
-        this.IdFornecedor = IdFornecedor;
+    public void setIdFornecedor(Long idFornecedor) {
+        this.idFornecedor = idFornecedor;
     }
 
     public String getNomeFornecedor() {
-        return NomeFornecedor;
+        return nomeFornecedor;
     }
 
-    public void setNomeFornecedor(String NomeFornecedor) {
-        this.NomeFornecedor = NomeFornecedor;
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
     }
 
     public String getEmailFornecedor() {
-        return EmailFornecedor;
+        return emailFornecedor;
     }
 
-    public void setEmailFornecedor(String EmailFornecedor) {
-        this.EmailFornecedor = EmailFornecedor;
+    public void setEmailFornecedor(String emailFornecedor) {
+        this.emailFornecedor = emailFornecedor;
     }
 
     public Long getTelefoneFornecedor() {
-        return TelefoneFornecedor;
+        return telefoneFornecedor;
     }
 
-    public void setTelefoneFornecedor(Long TelefoneFornecedor) {
-        this.TelefoneFornecedor = TelefoneFornecedor;
+    public void setTelefoneFornecedor(Long telefoneFornecedor) {
+        this.telefoneFornecedor = telefoneFornecedor;
     }
 
     public String getEnderecoFornecedor() {
-        return EnderecoFornecedor;
+        return enderecoFornecedor;
     }
 
-    public void setEnderecoFornecedor(String EndereçoFornecedor) {
-        this.EnderecoFornecedor = EndereçoFornecedor;
+    public void setEnderecoFornecedor(String enderecoFornecedor) {
+        this.enderecoFornecedor = enderecoFornecedor;
     }
 
     public Long getCnpj() {
-        return Cnpj;
+        return cnpj;
     }
 
-    public void setCnpj(Long Cnpj) {
-        this.Cnpj = Cnpj;
+    public void setCnpj(Long cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getDataCadastro() {
-        return DataCadastro;
+        return dataCadastro;
     }
 
-    public void setDataCadastro(String DataCadastro) {
-        this.DataCadastro = DataCadastro;
+    public void setDataCadastro(String dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public int getPrioridadeFornecedor() {
-        return PrioridadeFornecedor;
+        return prioridadeFornecedor;
     }
 
-    public void setPrioridadeFornecedor(int PrioridadeFornecedor) {
-        this.PrioridadeFornecedor = PrioridadeFornecedor;
+    public void setPrioridadeFornecedor(int prioridadeFornecedor) {
+        this.prioridadeFornecedor = prioridadeFornecedor;
     }
+  
+
+
  }

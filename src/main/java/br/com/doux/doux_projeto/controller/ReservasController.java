@@ -3,6 +3,7 @@ package br.com.doux.doux_projeto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,10 +28,15 @@ public class ReservasController {
         return reservasService.create(reservas);
     }
 
-    @GetMapping
-    List<Reservas> list(){
-        return reservasService.list();
+    @GetMapping("/{id}")
+   public ResponseEntity<Reservas> getReservasById(@PathVariable("id") Long id){
+    
+    if (reserva != null){
+        return ResponseEntity.ok(reserva);
+    } else {
+        return ResponseEntity.notFound().build();
     }
+   }
 
     @PutMapping
     List<Reservas> update(@RequestBody Reservas reservas){

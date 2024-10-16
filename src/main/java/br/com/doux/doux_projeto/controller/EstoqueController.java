@@ -23,8 +23,6 @@ public class EstoqueController {
     @Autowired
     private EstoqueService estoqueService;
 
-   
-
     @PostMapping
     List<Estoque> create(@RequestBody Estoque estoque){
       return estoqueService.create(estoque);

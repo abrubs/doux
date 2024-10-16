@@ -24,9 +24,17 @@ public class EstoqueService {
     private ProdutosRepository produtoRepository;
 
     public List<Estoque> create(Estoque estoque) {
+        // Salva o novo estoque
         estoqueRepository.save(estoque);
-        return estoqueRepository.findAll(); // Retorna a lista de todos os estoques
+
+        // Após salvar, preenche o objeto produto do estoque criado
+        Produtos produto = produtoRepository.findById(estoque.getIdProduto()).orElse(null);
+        estoque.setProduto(produto);
+
+        // Retorna a lista de todos os estoques, com o produto preenchido
+        return list();
     }
+
 
     public List<Estoque> list() {
         // Busca todos os estoques

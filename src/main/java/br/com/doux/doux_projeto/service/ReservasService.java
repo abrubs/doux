@@ -30,6 +30,7 @@ public class ReservasService {
 
     public List<Reservas> create(Reservas reservas){
         reservasRepository.save(reservas);
+
         return reservasRepository.findAll();
     }
 
@@ -39,13 +40,13 @@ public class ReservasService {
         reservas.forEach(reserva -> {
             Produtos produto = produtoRepository.findById(reserva.getIdProduto())
             .orElse(null);
-            reserva.setProduto(produto);
-        });
 
-        reservas.forEach (reserva -> {
+            reserva.setProduto(produto);
+
             Clientes cliente = clienteRepository.findById(reserva.getIdCliente())
             .orElse(null);
-            reservas.setClientes(cliente);
+
+            reserva.setCliente(cliente);
         });
 
         return reservas;
@@ -56,14 +57,13 @@ public class ReservasService {
 
       if (reservasOptional.isPresent()){
         Reservas reserva = reservasOptional.get();
-        Produtos produto = produtoRepository.findById(Reservas.getidProduto()).orElse(null);
-        reserva.setProduto(produto);
-        return reserva;
 
-      ? (reservasOptional.isPresent());
-        Reservas reserva = reservasOptional.get();
-        Clientes cliente = clienteRepository.findById(Reservas.getIdCliente()).orElse(null);
+        Produtos produto = produtoRepository.findById(reserva.getIdProduto()).orElse(null);
+        reserva.setProduto(produto);
+
+        Clientes cliente = clienteRepository.findById(reserva.getIdCliente()).orElse(null);
         reserva.setCliente(cliente);
+
         return reserva;
       }
       return null;
@@ -75,9 +75,26 @@ public class ReservasService {
         return list();
     }
 
+    public List<Reservas> update(Long id, Reservas reservas) {
+        // Verifica se o cliente existe
+        Reservas existingReserva = reservasRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Reserva não encontrado com id " + id));
+
+        // Atualiza os campos da reserva existente
+        existingReserva.setIdCliente(reservas.getIdCliente());
+        existingReserva.setIdProduto(reservas.getIdProduto());
+        existingReserva.setQuantidade(reservas.getQuantidade());
+        existingReserva.setDataReserva(reservas.getDataReserva());
+        existingReserva.setStatusReserva(reservas.getStatusReserva());
+        existingReserva.setPrioridadeReserva(reservas.getPrioridadeReserva());
+
+        reservasRepository.save(existingReserva);
+
+        return list();
+    }
+
     public List<Reservas> delete(Long id){
         reservasRepository.deleteById(id);
         return list();
-    } 
-
+    }
 }    

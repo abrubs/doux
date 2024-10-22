@@ -1,12 +1,14 @@
 package br.com.doux.doux_projeto.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import br.com.doux.doux_projeto.entity.Clientes;
-import br.com.doux.doux_projeto.repository.ClientesRepository;
 import br.com.doux.doux_projeto.exception.ResourceNotFoundException;
+import br.com.doux.doux_projeto.repository.ClientesRepository;
 
 @Service
 public class ClientesService {
@@ -22,7 +24,7 @@ public class ClientesService {
     
     public List<Clientes> list() {
        Sort sort = Sort.by("PrioridadeCliente").descending().and(
-            Sort.by("NomeCliente") .ascending());
+            Sort.by("UserCliente") .ascending());
             return clientesRepository.findAll(sort);
     }
 
@@ -37,8 +39,8 @@ public class ClientesService {
                 .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com id " + id));
 
         // Atualiza os campos do cliente existente
-        existingCliente.setNomeCliente(clientes.getNomeCliente());
-        existingCliente.setSobrenomeCliente(clientes.getSobrenomeCliente());
+        existingCliente.setNomeCompletoCliente(clientes.getNomeCompletoCliente());
+        existingCliente.setUserCliente(clientes.getUserCliente());
         existingCliente.setEmailCliente(clientes.getEmailCliente());
         existingCliente.setTelefoneCliente(clientes.getTelefoneCliente());
         existingCliente.setSenhaCliente(clientes.getSenhaCliente());

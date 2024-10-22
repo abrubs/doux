@@ -38,7 +38,7 @@ public class FuncionariosService {
         Funcionarios existingFuncionarios = funcionariosRepository.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("Funcionario não encontrado com id"+ id));
     
-        existingFuncionarios.setNomeFuncionario(funcionarios.getNomeFuncionario());
+        existingFuncionarios.setUserFuncionario(funcionarios.getUserFuncionario());
         existingFuncionarios.setEmailFuncionario(funcionarios.getEmailFuncionario());
         existingFuncionarios.setTelefoneFuncionario(funcionarios.getTelefoneFuncionario());
         existingFuncionarios.setFuncaoFuncionario(funcionarios.getFuncaoFuncionario());

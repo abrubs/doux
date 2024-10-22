@@ -36,7 +36,7 @@ public class FornecedorService {
         Fornecedor existingFornecedor = fornecedorRepository.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("Fornecedor não encontrado com id"+ id));
       
-       existingFornecedor.setNomeFornecedor(fornecedor.getNomeFornecedor());
+       existingFornecedor.setUserFornecedor(fornecedor.getUserFornecedor());
        existingFornecedor.setEmailFornecedor(fornecedor.getEmailFornecedor());
        existingFornecedor.setTelefoneFornecedor(fornecedor.getTelefoneFornecedor());
        existingFornecedor.setEnderecoFornecedor(fornecedor.getEnderecoFornecedor());

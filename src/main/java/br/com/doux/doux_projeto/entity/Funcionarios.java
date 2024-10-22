@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 
  @Entity
  @Table(name ="funcionarios")
@@ -11,12 +13,16 @@ public class Funcionarios {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long codigoFuncionario;
-    private String nomeFuncionario;
+    private String nomeCompletoFuncionario;
+
+    @Email(message="O campo deve conter um email válido")
     private String emailFuncionario;
     private long telefoneFuncionario;
     private String funcaoFuncionario;
     private String senhaFuncionario;
     private int prioridadeFuncionario;
+     @Pattern(regexp= "\\S+", message = "O user não deve conter espaço")
+    private String userFuncionario;
 
     public long getCodigoFuncionario() {
         return codigoFuncionario;
@@ -26,12 +32,12 @@ public class Funcionarios {
         this.codigoFuncionario = codigoFuncionario;
     }
 
-    public String getNomeFuncionario() {
-        return nomeFuncionario;
+    public String getNomeCompletoFuncionario() {
+        return nomeCompletoFuncionario;
     }
 
-    public void setNomeFuncionario(String nomeFuncionario) {
-        this.nomeFuncionario = nomeFuncionario;
+    public void setNomeCompletoFuncionario(String nomeCompletoFuncionario) {
+        this.nomeCompletoFuncionario = nomeCompletoFuncionario;
     }
 
     public String getEmailFuncionario() {
@@ -64,6 +70,14 @@ public class Funcionarios {
 
     public void setSenhaFuncionario(String senhaFuncionario) {
         this.senhaFuncionario = senhaFuncionario;
+    }
+
+    public String getUserFuncionario() {
+        return userFuncionario;
+    }
+
+    public void setUserFuncionario(String userFuncionario) {
+        this.userFuncionario = userFuncionario;
     }
 
     public int getPrioridadeFuncionario() {

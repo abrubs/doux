@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.doux.doux_projeto.entity.Funcionarios;
 import br.com.doux.doux_projeto.service.FuncionariosService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/funcionarios")
@@ -23,7 +24,7 @@ public class FuncionariosController {
     private FuncionariosService funcionariosService;
 
     @PostMapping("/")
-    List<Funcionarios> create(@RequestBody Funcionarios funcionarios){
+    List<Funcionarios> create(@Valid @RequestBody Funcionarios funcionarios){
       return this.funcionariosService.create(funcionarios);
     }
 

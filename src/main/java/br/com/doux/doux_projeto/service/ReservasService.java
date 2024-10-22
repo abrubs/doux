@@ -5,15 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import br.com.doux.doux_projeto.entity.Clientes;
 import br.com.doux.doux_projeto.entity.Produtos;
 import br.com.doux.doux_projeto.entity.Reservas;
+import br.com.doux.doux_projeto.exception.ResourceNotFoundException;
 import br.com.doux.doux_projeto.repository.ClientesRepository;
 import br.com.doux.doux_projeto.repository.ProdutosRepository;
 import br.com.doux.doux_projeto.repository.ReservasRepository;
-import br.com.doux.doux_projeto.entity.Clientes;
-import br.com.doux.doux_projeto.exception.ResourceNotFoundException;
-
-import org.springframework.data.domain.Sort;
 
 
 @Service
@@ -76,11 +75,10 @@ public class ReservasService {
     }
 
     public List<Reservas> update(Long id, Reservas reservas) {
-        // Verifica se o cliente existe
+      
         Reservas existingReserva = reservasRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Reserva não encontrado com id " + id));
 
-        // Atualiza os campos da reserva existente
         existingReserva.setIdCliente(reservas.getIdCliente());
         existingReserva.setIdProduto(reservas.getIdProduto());
         existingReserva.setQuantidade(reservas.getQuantidade());

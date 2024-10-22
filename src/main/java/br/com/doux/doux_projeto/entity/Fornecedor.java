@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 
  @Entity
  @Table(name ="fornecedor")
@@ -11,7 +13,11 @@ public class Fornecedor {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idFornecedor;
-    private String nomeFornecedor;
+
+     @Pattern(regexp= "\\S+", message = "O user não deve conter espaço")
+    private String userFornecedor;
+
+    @Email(message="O campo deve conter um email válido")
     private String emailFornecedor;
     private Long telefoneFornecedor;
     private String enderecoFornecedor;
@@ -27,12 +33,12 @@ public class Fornecedor {
         this.idFornecedor = idFornecedor;
     }
 
-    public String getNomeFornecedor() {
-        return nomeFornecedor;
+    public String getUserFornecedor() {
+        return userFornecedor;
     }
 
-    public void setNomeFornecedor(String nomeFornecedor) {
-        this.nomeFornecedor = nomeFornecedor;
+    public void setUserFornecedor(String userFornecedor) {
+        this.userFornecedor = userFornecedor;
     }
 
     public String getEmailFornecedor() {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.doux.doux_projeto.entity.Clientes;
 import br.com.doux.doux_projeto.service.ClientesService;
+import jakarta.validation.Valid;
 
 
 @RequestMapping("/clientes")
@@ -26,7 +27,7 @@ public class ClientesController {
     
 
     @PostMapping("/")
-     List<Clientes> create(@RequestBody Clientes clientes) {
+     List<Clientes> create(@Valid @RequestBody Clientes clientes) {
      return this.clientesService.create(clientes);
     }
     

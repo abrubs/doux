@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.doux.doux_projeto.entity.Fornecedor;
 import br.com.doux.doux_projeto.service.FornecedorService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/fornecedor")
@@ -24,7 +25,7 @@ public class FornecedorController {
 
    
     @PostMapping("/")
-    List<Fornecedor> create(@RequestBody Fornecedor fornecedor){
+    List<Fornecedor> create(@Valid @RequestBody Fornecedor fornecedor){
        return this.fornecedorService.create(fornecedor);
     }
 

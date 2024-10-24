@@ -16,9 +16,9 @@ import br.com.doux.doux_projeto.entity.Clientes;
 import br.com.doux.doux_projeto.service.ClientesService;
 import jakarta.validation.Valid;
 
-
-@RequestMapping("/clientes")
 @RestController
+@RequestMapping("/clientes")
+
 public class ClientesController {
 
     @Autowired

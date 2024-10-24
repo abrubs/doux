@@ -1,20 +1,6 @@
 package br.com.doux.doux_projeto.service;
 
 import java.util.List;
-<<<<<<< Updated upstream
-
-import br.com.doux.doux_projeto.entity.Clientes;
-import br.com.doux.doux_projeto.entity.Produtos;
-import br.com.doux.doux_projeto.exception.ResourceNotFoundException;
-import br.com.doux.doux_projeto.repository.ProdutosRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
-import br.com.doux.doux_projeto.entity.Estoque;
-import br.com.doux.doux_projeto.repository.EstoqueRepository;
-import java.util.Optional;
-=======
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +11,6 @@ import br.com.doux.doux_projeto.entity.Produtos;
 import br.com.doux.doux_projeto.exception.ResourceNotFoundException;
 import br.com.doux.doux_projeto.repository.EstoqueRepository;
 import br.com.doux.doux_projeto.repository.ProdutosRepository;
->>>>>>> Stashed changes
 
 
 @Service
@@ -85,11 +70,11 @@ public class EstoqueService {
         return list();
     }
 
-<<<<<<< Updated upstream
+
     public List<Estoque> delete(Long id) {
         estoqueRepository.deleteById(id);
         return list();
-=======
+    }
    public Estoque update(Long id, Estoque estoque) {
     Estoque existingEstoque = estoqueRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Estoque não encontrado com id" + id));
@@ -101,9 +86,5 @@ public class EstoqueService {
     return estoqueRepository.save(existingEstoque);
    }
 
-   public List<Estoque> delete(Long id){
-    estoqueRepository.deleteById(id);
-    return list();
->>>>>>> Stashed changes
     }
-}
+

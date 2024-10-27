@@ -13,8 +13,10 @@ import br.com.doux.doux_projeto.dtoCliente.LoginRequestDTO;
 import br.com.doux.doux_projeto.dtoCliente.RegisterRequestDTO;
 import br.com.doux.doux_projeto.dtoCliente.ResponseDTO;
 import br.com.doux.doux_projeto.entity.Clientes;
+import br.com.doux.doux_projeto.entity.Fornecedor;
 import br.com.doux.doux_projeto.repository.ClientesRepository;
 import br.com.doux.doux_projeto.securityCliente.TokenService;
+import io.micrometer.core.ipc.http.HttpSender;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -55,6 +57,19 @@ public class AuthController {
         return ResponseEntity.badRequest().build();
         
     }
+
+    @PostMapping("/login-fornecedor")
+    public ResponseEntity<Object> login(@RequestBody RegisterRequestDTO body){
+        Fornecedor fornecedor = this.fornecedorRepository.findByEmailFornecedor(body.emailFornecedor())
+        .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        System.out.println(fornecedor);
+        if (passwordEncoder.matches(body.senhaFornecedor(), fornecedor.getSenhaFornecedor())){
+            String token = this.tokenService.generateToken(fornecedor);
+            return ResponseEntity.ok(new ResponseDTO(fornecedor.getNomeFornecedor(), token));
+        }
+        return ResponseEntity.badRequest().body("Usuário não encontrado");
+    }
+
 
    
 }

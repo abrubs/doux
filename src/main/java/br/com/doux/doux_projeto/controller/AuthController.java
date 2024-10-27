@@ -56,4 +56,6 @@ public class AuthController {
         
     }
 
+    @PostMapping("/login-fornecedor")
+    public Response
 }

@@ -42,7 +42,7 @@ public class ReservasService {
 
             reserva.setProduto(produto);
 
-            Clientes cliente = clienteRepository.findById(reserva.getIdCliente())
+            Clientes cliente = clienteRepository.findByCpf(reserva.getCpf())
             .orElse(null);
 
             reserva.setCliente(cliente);
@@ -60,7 +60,7 @@ public class ReservasService {
         Produtos produto = produtoRepository.findById(reserva.getIdProduto()).orElse(null);
         reserva.setProduto(produto);
 
-        Clientes cliente = clienteRepository.findById(reserva.getIdCliente()).orElse(null);
+        Clientes cliente = clienteRepository.findByCpf(reserva.getCpf()).orElse(null);
         reserva.setCliente(cliente);
 
         return reserva;
@@ -79,7 +79,7 @@ public class ReservasService {
         Reservas existingReserva = reservasRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Reserva não encontrado com id " + id));
 
-        existingReserva.setIdCliente(reservas.getIdCliente());
+        existingReserva.setcpf(reservas.getCpf());
         existingReserva.setIdProduto(reservas.getIdProduto());
         existingReserva.setQuantidade(reservas.getQuantidade());
         existingReserva.setDataReserva(reservas.getDataReserva());

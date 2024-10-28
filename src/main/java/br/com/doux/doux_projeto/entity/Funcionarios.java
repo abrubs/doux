@@ -23,6 +23,7 @@ public class Funcionarios {
     private int prioridadeFuncionario;
      @Pattern(regexp= "\\S+", message = "O user não deve conter espaço")
     private String userFuncionario;
+    private String nomeFuncionario;
 
     public long getCodigoFuncionario() {
         return codigoFuncionario;
@@ -72,6 +73,14 @@ public class Funcionarios {
         this.senhaFuncionario = senhaFuncionario;
     }
 
+    public int getPrioridadeFuncionario() {
+        return prioridadeFuncionario;
+    }
+
+    public void setPrioridadeFuncionario(int prioridadeFuncionario) {
+        this.prioridadeFuncionario = prioridadeFuncionario;
+    }
+
     public String getUserFuncionario() {
         return userFuncionario;
     }
@@ -80,11 +89,17 @@ public class Funcionarios {
         this.userFuncionario = userFuncionario;
     }
 
-    public int getPrioridadeFuncionario() {
-        return prioridadeFuncionario;
+    public String getNomeFuncionario() {
+        return nomeFuncionario;
     }
 
-    public void setPrioridadeFuncionario(int prioridadeFuncionario) { this.prioridadeFuncionario = prioridadeFuncionario; }
+    public void setNomeFuncionario(String nomeFuncionario) {
+        this.nomeFuncionario = nomeFuncionario;
+    }
+
+  
+
+ 
 }
 
 

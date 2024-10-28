@@ -1,4 +1,4 @@
-package br.com.doux.doux_projeto.securityCliente;
+package br.com.doux.doux_projeto.security;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -12,8 +12,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
-import br.com.doux.doux_projeto.entity.Clientes;
-import br.com.doux.doux_projeto.entity.Fornecedor;
+import br.com.doux.doux_projeto.entity.Funcionarios;
 
 @Service
 public class TokenService {
@@ -22,14 +21,12 @@ public class TokenService {
     private String secret;
 
     
-    public String generateToken(Clientes cliente) {
-        return generateTokenGeneric(cliente.getEmailCliente());
+    public String generateToken(Funcionarios funcionarios) {
+        return generateTokenGeneric(funcionarios.getEmailFuncionario());
     }
 
     
-    public String generateTokenFornecedor(Fornecedor fornecedor) {
-        return generateTokenGeneric(fornecedor.getEmailFornecedor());
-    }
+
 
     private String generateTokenGeneric(String email) {
         try {

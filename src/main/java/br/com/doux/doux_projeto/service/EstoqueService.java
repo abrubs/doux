@@ -22,29 +22,22 @@ public class EstoqueService {
     private ProdutosRepository produtoRepository;
 
     public List<Estoque> create(Estoque estoque) {
-        // Salva o novo estoque
+        
         estoqueRepository.save(estoque);
 
-        // Após salvar, preenche o objeto produto do estoque criado
         Produtos produto = produtoRepository.findById(estoque.getIdProduto()).orElse(null);
         estoque.setProduto(produto);
 
-        // Retorna a lista de todos os estoques, com o produto preenchido
         return list();
     }
 
 
     public List<Estoque> list() {
-        // Busca todos os estoques
         List<Estoque> estoques = estoqueRepository.findAll();
-
-        // Para cada estoque, buscar o produto com base no idProduto e preencher os detalhes do produto
         estoques.forEach(estoque -> {
             Produtos produto = produtoRepository.findById(estoque.getIdProduto())
-                    .orElse(null); // Use null caso o produto não seja encontrado
-
-            // Aqui você pode associar as informações do Produto ao estoque
-            estoque.setProduto(produto); // Se o produto não for encontrado, será null
+                    .orElse(null); 
+            estoque.setProduto(produto); 
         });
 
         return estoques;
@@ -55,13 +48,12 @@ public class EstoqueService {
 
         if (estoqueOptional.isPresent()) {
             Estoque estoque = estoqueOptional.get();
-            // Buscar o produto pelo ID do produto
             Produtos produto = produtoRepository.findById(estoque.getIdProduto()).orElse(null);
-            estoque.setProduto(produto); // Setar o produto encontrado no estoque
-            return estoque; // Retornar o estoque com o produto preenchido
+            estoque.setProduto(produto); 
+            return estoque; 
         }
 
-        return null; // Retornar null ou lançar uma exceção se o estoque não for encontrado
+        return null; 
     }
 
 

@@ -14,7 +14,7 @@ public class Reservas {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long idReserva;
 
-    private long idCliente;
+    private long cpf;
     private long idProduto;
     private long quantidade;
     private String dataReserva;
@@ -35,12 +35,12 @@ public class Reservas {
         this.idReserva = idReserva;
     }
 
-    public long getIdCliente() {
-        return idCliente;
+    public long cpf() {
+        return cpf;
     }
 
-    public void setIdCliente(long idCliente) {
-        this.idCliente = idCliente;
+    public void cpf(long cpf) {
+        this.cpf = cpf;
     }
 
     public long getIdProduto() { return idProduto; }

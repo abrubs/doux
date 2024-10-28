@@ -34,11 +34,11 @@ public class ClientesService {
     }
 
     public Clientes update(Long id, Clientes clientes) {
-        // Verifica se o cliente existe
+       
         Clientes existingCliente = clientesRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com id " + id));
 
-        // Atualiza os campos do cliente existente
+    
         existingCliente.setNomeCompletoCliente(clientes.getNomeCompletoCliente());
         existingCliente.setUserCliente(clientes.getUserCliente());
         existingCliente.setEmailCliente(clientes.getEmailCliente());
@@ -46,7 +46,7 @@ public class ClientesService {
         existingCliente.setSenhaCliente(clientes.getSenhaCliente());
         existingCliente.setPrioridadeCliente(clientes.getPrioridadeCliente());
 
-        // Salva o cliente atualizado
+      
         return clientesRepository.save(existingCliente);
     }
     

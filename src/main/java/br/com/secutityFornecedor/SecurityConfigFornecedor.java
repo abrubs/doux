@@ -1,10 +1,11 @@
-package br.com.doux.doux_projeto.securityCliente;
+package br.com.secutityFornecedor;
 
 import java.util.List;
 
-import javax.xml.transform.Source;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,26 +18,28 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Service;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
+
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfigFornecedor {
 
     @Autowired
-    private CustomClienteDetailsService clienteDetailsService;
+    private CustomFornecedorDetailsService fornecedorDetailsService;
 
     @Autowired
-    SecurityFilter securityFilter;
+    SecurityFilterFornecedor securityFilter;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Bean(name="2")
+    public SecurityFilterChain securityFilterChainFornecedor(HttpSecurity http) throws Exception {
         http
 
-             .cors().configurationSource(corsConfigurationSource())
+             .cors().configurationSource(corsConfigurationSourceFornecedor())
              .and()
              .csrf(csrf -> csrf.disable())
              .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -44,22 +47,30 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                 .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                .anyRequest().authenticated()
-             )
+                .anyRequest().authenticated() )
              .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
              return http.build();
     }
    
-    @Bean
-    public PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
+    @Bean(name = "passwordEncoderFornecedor")
+    public PasswordEncoder passwordEncoderFornecedor(){return new BCryptPasswordEncoder();}
 
-    @Bean(name="authenticationManagerCliente")
-    public AuthenticationManager authenticationManagerCliente(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+    
+    @Bean("clienteAuthManager")
+    public AuthenticationManager clienteAuthenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    @Bean("fornecedorAuthManager")
+    public AuthenticationManager fornecedorAuthenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+    public AuthenticationManager authenticationManagerFornecedor(AuthenticationConfiguration authenticationConfiguration) throws Exception{
        return authenticationConfiguration.getAuthenticationManager();
     }
 
-      @Bean
-      public CorsConfigurationSource corsConfigurationSource() {
+      @Bean(name = "corsConfigurationSourceFornecedor")
+      public CorsConfigurationSource corsConfigurationSourceFornecedor() {
          CorsConfiguration configuration = new CorsConfiguration();
             configuration.setAllowedOrigins(List.of("http://127.0.0.2:5500"));
             configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
@@ -71,3 +82,4 @@ public class SecurityConfig {
             return source;
          }
          }   
+

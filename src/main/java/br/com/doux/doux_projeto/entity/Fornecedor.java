@@ -24,6 +24,8 @@ public class Fornecedor {
     private Long cnpj;
     private String dataCadastro;
     private int prioridadeFornecedor;
+    private String senhaFornecedor;
+    private String nomeFornecedor;
 
     public Long getIdFornecedor() {
         return idFornecedor;
@@ -88,7 +90,23 @@ public class Fornecedor {
     public void setPrioridadeFornecedor(int prioridadeFornecedor) {
         this.prioridadeFornecedor = prioridadeFornecedor;
     }
-  
 
+    public String getSenhaFornecedor() {
+        return senhaFornecedor;
+    }
+
+    public void setSenhaFornecedor(String senhaFornecedor) {
+        this.senhaFornecedor = senhaFornecedor;
+    }
+
+    public String getNomeFornecedor() {
+        return nomeFornecedor;
+    }
+
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
+    }
+
+   
 
  }

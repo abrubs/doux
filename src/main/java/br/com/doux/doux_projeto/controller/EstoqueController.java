@@ -31,7 +31,7 @@ public class EstoqueController {
     @GetMapping
     public ResponseEntity<List<Estoque>> list() {
         List<Estoque> estoques = estoqueService.list();
-        return ResponseEntity.ok(estoques);  // Retorna a lista de estoques com os produtos
+        return ResponseEntity.ok(estoques);  
     }
 
     @GetMapping("/{id}")
@@ -39,9 +39,9 @@ public class EstoqueController {
         Estoque estoque = estoqueService.findById(id);
 
         if (estoque != null) {
-            return ResponseEntity.ok(estoque); // Retorna 200 OK com o estoque encontrado
+            return ResponseEntity.ok(estoque); 
         } else {
-            return ResponseEntity.notFound().build(); // Retorna 404 Not Found se o estoque não for encontrado
+            return ResponseEntity.notFound().build(); 
         }
     }
 

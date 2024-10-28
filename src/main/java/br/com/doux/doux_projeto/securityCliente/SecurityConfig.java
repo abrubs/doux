@@ -1,9 +1,5 @@
 package br.com.doux.doux_projeto.securityCliente;
 
-import java.util.List;
-
-import javax.xml.transform.Source;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,53 +17,66 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.List;
+
+
+import br.com.doux.doux_projeto.securityCliente.SecurityFilter;
+
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
-    private CustomClienteDetailsService clienteDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
+
+    
 
     @Autowired
-    SecurityFilter securityFilter;
+    private SecurityFilter securityFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-
-             .cors().configurationSource(corsConfigurationSource())
-             .and()
-             .csrf(csrf -> csrf.disable())
-             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-             .authorizeHttpRequests(authorize -> authorize
+            .cors().configurationSource(corsConfigurationSource())
+            .and()
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(authorize -> authorize
+                .requestMatchers(HttpMethod.POST, "/auth/login-fornecedor").permitAll()
+                .requestMatchers(HttpMethod.POST, "/auth/register-fornecedor").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                .anyRequest().authenticated()
-             )
-             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
-             return http.build();
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .anyRequest().authenticated())
+            .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class); 
+
+        return http.build();
     }
-   
+
     @Bean
-    public PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
-
-    @Bean(name="authenticationManagerCliente")
-    public AuthenticationManager authenticationManagerCliente(AuthenticationConfiguration authenticationConfiguration) throws Exception{
-       return authenticationConfiguration.getAuthenticationManager();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
-      @Bean
-      public CorsConfigurationSource corsConfigurationSource() {
-         CorsConfiguration configuration = new CorsConfiguration();
-            configuration.setAllowedOrigins(List.of("http://127.0.0.2:5500"));
-            configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-            configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-            configuration.setAllowCredentials(true);
-   
-            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-            source.registerCorsConfiguration("/**", configuration);
-            return source;
-         }
-         }   
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://127.0.0.2:5500")); 
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+}
+

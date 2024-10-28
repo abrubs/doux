@@ -13,6 +13,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
 import br.com.doux.doux_projeto.entity.Clientes;
+import br.com.doux.doux_projeto.entity.Fornecedor;
 
 @Service
 public class TokenService {
@@ -20,41 +21,45 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    public String generateToken(Clientes clientes){
-    try {
-
-        Algorithm algorithm = Algorithm.HMAC256(secret);
-
-        String token = JWT.create()
-                         .withIssuer("login-auth-api")
-                         .withSubject(clientes.getEmailCliente())
-                         .withExpiresAt(this.generateExpirationDate())
-                         .sign(algorithm);
-                         return token;
-
-    } catch (JWTCreationException exception){
-       throw new RuntimeException("Erro ao autenticar");
-    }
-}
-
-public String validateToken(String token){
-    try {
-        Algorithm algorithm = Algorithm.HMAC256(secret);
-        return JWT.require(algorithm)
-        .withIssuer("login-auth-api")
-        .build()
-        .verify(token)
-        .getSubject();
-    } catch (JWTVerificationException exception) {
-        return null;   
-    }
-}
-
-  
     
-    private Instant generateExpirationDate(){
+    public String generateToken(Clientes cliente) {
+        return generateTokenGeneric(cliente.getEmailCliente());
+    }
+
+    
+    public String generateTokenFornecedor(Fornecedor fornecedor) {
+        return generateTokenGeneric(fornecedor.getEmailFornecedor());
+    }
+
+    private String generateTokenGeneric(String email) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            String token = JWT.create()
+                             .withIssuer("login-auth-api")
+                             .withSubject(email)
+                             .withExpiresAt(this.generateExpirationDate())
+                             .sign(algorithm);
+            return token;
+
+        } catch (JWTCreationException exception) {
+            throw new RuntimeException("Erro ao autenticar");
+        }
+    }
+
+    public String validateToken(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+                      .withIssuer("login-auth-api")
+                      .build()
+                      .verify(token)
+                      .getSubject();
+        } catch (JWTVerificationException exception) {
+            return null;   
+        }
+    }
+
+    private Instant generateExpirationDate() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.ofHours(-3));
     }
 }
-
-

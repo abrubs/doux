@@ -35,15 +35,17 @@ public class Reservas {
         this.idReserva = idReserva;
     }
 
-    public long cpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void cpf(long cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
-    public long getIdProduto() { return idProduto; }
+    public long getIdProduto() {
+        return idProduto;
+    }
 
     public void setIdProduto(long idProduto) {
         this.idProduto = idProduto;
@@ -81,14 +83,22 @@ public class Reservas {
         this.prioridadeReserva = prioridadeReserva;
     }
 
-    public Produtos getProduto() { return produto; }
-
-    public Clientes getCliente() { return cliente; }
+    public Produtos getProduto() {
+        return produto;
+    }
 
     public void setProduto(Produtos produto) {
         this.produto = produto;
     }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
     public void setCliente(Clientes cliente) {
         this.cliente = cliente;
     }
+
+    
+
 }

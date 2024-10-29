@@ -16,7 +16,7 @@ import jakarta.validation.constraints.Pattern;
         private Long idCliente;
         private String nomeCliente;
         private String nomeCompletoCliente;
-        private String cpf;
+        private Long cpf;
         @Email(message="O campo deve conter um email válido")
         
         private String emailCliente;
@@ -52,11 +52,11 @@ import jakarta.validation.constraints.Pattern;
         this.nomeCompletoCliente = nomeCompletoCliente;
     }
 
-    public String getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
@@ -99,6 +99,8 @@ import jakarta.validation.constraints.Pattern;
     public void setPrioridadeCliente(int prioridadeCliente) {
         this.prioridadeCliente = prioridadeCliente;
     }
+
+  
 
    
 

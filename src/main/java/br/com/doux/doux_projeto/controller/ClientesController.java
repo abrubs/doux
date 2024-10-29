@@ -41,12 +41,12 @@ public class ClientesController {
         return clientesService.findById(id);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public Clientes update(@PathVariable("id") Long id, @RequestBody Clientes clientes) {
         return this.clientesService.update(id, clientes);
     }
     
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     List<Clientes> delete(@PathVariable("id") Long id) {
         return this.clientesService.delete(id);
     }

@@ -23,14 +23,21 @@ public class ReservasService {
 
     @Autowired
     private ClientesRepository clienteRepository;
-
+ 
     @Autowired 
-    private ProdutosRepository produtoRepository;
+    private ProdutosRepository produtoRepository; 
+
+    
 
     public List<Reservas> create(Reservas reservas){
         reservasRepository.save(reservas);
 
         return reservasRepository.findAll();
+    }
+
+    public Clientes findByCpf(Long cpf) {
+        return this.clienteRepository.findByCpf(cpf)
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com o CPF: " + cpf));
     }
 
     public List<Reservas> list(){
@@ -79,7 +86,7 @@ public class ReservasService {
         Reservas existingReserva = reservasRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Reserva não encontrado com id " + id));
 
-        existingReserva.setcpf(reservas.getCpf());
+        existingReserva.setCpf(reservas.getCpf());
         existingReserva.setIdProduto(reservas.getIdProduto());
         existingReserva.setQuantidade(reservas.getQuantidade());
         existingReserva.setDataReserva(reservas.getDataReserva());

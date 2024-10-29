@@ -2,8 +2,6 @@ package br.com.doux.doux_projeto.controller;
 
 import java.util.List;
 
-import br.com.doux.doux_projeto.entity.Clientes;
-import br.com.doux.doux_projeto.entity.Estoque;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.doux.doux_projeto.entity.Clientes;
 import br.com.doux.doux_projeto.entity.Reservas;
 import br.com.doux.doux_projeto.service.ReservasService;
 
@@ -46,6 +45,11 @@ public class ReservasController {
             return ResponseEntity.notFound().build();
         }
    }
+
+   @GetMapping("/{cpf}")
+    public Clientes getByCpf(@PathVariable Long cpf) {
+    return this.reservasService.findByCpf(cpf);
+    }
 
     @PutMapping
     List<Reservas> update(@RequestBody Reservas reservas){
